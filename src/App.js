@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Home from "./components/pages/Home";
+import About from "./components/pages/About";
+import Header from "./components/Header";
 
 function App() {
+  const backgroundStyle = {
+    backgroundImage: "url(./tribe_logo.png)",
+    backgroundSize: "cover",
+    backgroundRepeat: "no-repeat",
+    height: "100vh",
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <div style={backgroundStyle}>
+          <Header />
+
+          {/* Use the Switch component to only render one Route */}
+          <Switch>
+            {/* Define routes using the Route component to render different page components at different paths */}
+            {/* Define a default route that will render the Home component */}
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={About} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </>
   );
 }
 
